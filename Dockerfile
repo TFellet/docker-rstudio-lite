@@ -15,15 +15,6 @@ ENV HIVE_ODBC_VERSION_FULL ${HIVE_ODBC_VERSION}-2_amd64
 ENV IMPALA_ODBC_VERSION 2.5.41.1029
 ENV IMPALA_ODBC_VERSION_FULL ${IMPALA_ODBC_VERSION}-2_amd64
 
-# Hadoop client installation
-# TODO use oneline curl/wget with env var to simplify
-RUN wget --no-verbose http://archive.cloudera.com/cdh${CDH_MAIN_VERSION}/cdh/${CDH_MAIN_VERSION}/hadoop-${HADOOP_VERSION}-cdh${CDH_VERSION}.tar.gz \
-    && tar -xzf hadoop-${HADOOP_VERSION}-cdh${CDH_VERSION}.tar.gz \
-    && rm hadoop-${HADOOP_VERSION}-cdh${CDH_VERSION}.tar.gz \
-    && mv hadoop-${HADOOP_VERSION}-cdh${CDH_VERSION} /usr/local/hadoop
-ENV HADOOP_HOME=/usr/local/hadoop
-ENV PATH=$PATH:$HADOOP_HOME/bin
-
 # Hive client installation
 # TODO use oneline curl -o with env var to simplify
 RUN wget --no-verbose http://apache.mirrors.ovh.net/ftp.apache.org/dist/hive/hive-${HIVE_VERSION}/apache-hive-${HIVE_VERSION}-bin.tar.gz \
